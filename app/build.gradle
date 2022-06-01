@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        applicationId "com.example.learningapp"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 8
+        versionName "1.1.8"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.ss.bannerslider:bannerslider:2.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+    //implementation 'com.chootdev:csnackbar:1.4.2'
+  //  implementation 'com.williammora:snackbar:1.4.0'
+    testImplementation 'junit:junit:4.+'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+
+
+    //new
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'com.google.firebase:firebase-auth:21.0.5'
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
+
+    // Declare the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-database:20.0.5'
+
+    implementation "com.android.billingclient:billing-ktx:5.0.0"
+
+
+    //implementation 'com.chootdev:csnackbar:1.4.2'
+    //  implementation 'com.williammora:snackbar:1.4.0'
+    testImplementation 'junit:junit:4.+'
+}

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient1"
+    android:gravity="center">
+
+
+    <FrameLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/maven_pro_medium"
+                android:gravity="center"
+                android:text="Create your profile"
+                android:textColor="#ffffff"
+                android:textSize="13dp" />
+
+            <LinearLayout
+                android:id="@+id/signInWithGmailLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/white_rounded_background"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/google" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/maven_pro_medium"
+                    android:gravity="center"
+                    android:text="Sign up with Google"
+                    android:textColor="#393737"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/maven_pro_medium"
+                android:gravity="center"
+                android:text="Or Sign up with your email"
+                android:textColor="#ffffff"
+                android:textSize="13dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/white_rounded_background"
+                android:gravity="center">
+
+
+                <EditText
+                    android:id="@+id/nameET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/maven_pro_medium"
+                    android:gravity="center|start"
+                    android:hint="Name"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#393737"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/white_rounded_background"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/emailET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/maven_pro_medium"
+                    android:gravity="center|start"
+                    android:hint="Email"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#393737"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/white_rounded_background"
+                android:gravity="center">
+
+
+                <EditText
+                    android:id="@+id/passwordET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/maven_pro_medium"
+                    android:gravity="center|start"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#393737"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/signupLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/button_rounded_background"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/maven_pro_medium"
+                    android:gravity="center"
+                    android:text="Sign up with Your Email"
+                    android:textColor="#F9F6FD"
+                    android:textSize="13dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/alReadyaccountLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/maven_pro_medium"
+                android:gravity="center"
+                android:text="Already have an account?"
+                android:textColor="#ffffff"
+                android:textSize="13dp" />
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+</ScrollView>

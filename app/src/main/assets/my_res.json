@@ -1,0 +1,103 @@
+{
+  "python": {
+    "questions": [
+      {
+        "id": "1",
+        "type": "1",
+        "question": "Who developed Python Programming Language?",
+        "a": "Wick van Rossum",
+        "b": "Rasmus Lerdorf",
+        "c": "Guido van Rossum",
+        "d": "Niene Stom",
+        "answer": "c,",
+        "explanation": "Python language is designed by a Dutch programmer Guido van Rossum in the Netherlands."
+      },
+      {
+        "id": "2",
+        "type": "1",
+        "question": "Who developed Python Programming Language?",
+        "a": "Wick van Rossum",
+        "b": "Rasmus Lerdorf",
+        "c": "Guido van Rossum",
+        "d": "Niene Stom",
+        "answer": "c,",
+        "explanation": "Python language is designed by a Dutch programmer Guido van Rossum in the Netherlands."
+      },
+      {
+        "id": "3",
+        "type": "1",
+        "question": "Who developed Python Programming Language?",
+        "a": "Wick van Rossum",
+        "b": "Rasmus Lerdorf",
+        "c": "Guido van Rossum",
+        "d": "Niene Stom",
+        "answer": "c,",
+        "explanation": "Python language is designed by a Dutch programmer Guido van Rossum in the Netherlands."
+      },
+      {
+        "id": "4",
+        "type": "1",
+        "question": "Who developed Python Programming Language?",
+        "a": "Wick van Rossum",
+        "b": "Rasmus Lerdorf",
+        "c": "Guido van Rossum",
+        "d": "Niene Stom",
+        "answer": "c,",
+        "explanation": "Python language is designed by a Dutch programmer Guido van Rossum in the Netherlands."
+      },
+      {
+        "id": "5",
+        "type": "1",
+        "question": "Who developed Python Programming Language?",
+        "a": "Wick van Rossum",
+        "b": "Rasmus Lerdorf",
+        "c": "Guido van Rossum",
+        "d": "Niene Stom",
+        "answer": "c,",
+        "explanation": "Python language is designed by a Dutch programmer Guido van Rossum in the Netherlands."
+      }
+    ],
+    "lesson": [
+      {
+        "title": "what is Java?",
+        "type": "1",
+        "description": "Our core Java programming tutorial is designed for students and working professionals. Java is an object-oriented, class-based, concurrent, secured and general-purpose computer-programming language. It is a widely used robust technology."
+      },
+      {
+        "title": "History of Java",
+        "type": "1",
+        "description": "The history of Java is very interesting. Java was originally designed for interactive television, but it was too advanced technology for the digital cable television industry at the time. The history of Java starts with the Green Team. Java team members (also known as Green Team), initiated this project to develop a language for digital devices such as set-top boxes, televisions, etc. However, it was best suited for internet programming. Later, Java technology was incorporated by Netscape."
+      },
+      {
+        "title": "Features of Java",
+        "type": "1",
+        "description": "The primary objective of Java programming language creation was to make it portable, simple and secure programming language. Apart from this, there are also some excellent features which play an important role in the popularity of this language. The features of Java are also known as Java buzzwords."
+      },
+      {
+        "title": "Java if else",
+        "type": "1",
+        "description": "The Java if statement is used to test the condition. It checks boolean condition: true or false. There are various types of if statement in Java."
+      },
+      {
+        "title": "Java switch case",
+        "type": "1",
+        "description": "The Java switch statement executes one statement from multiple conditions. It is like if-else-if ladder statement. The switch statement works with byte, short, int, long, enum types, String and some wrapper types like Byte, Short, Int, and Long. Since Java 7, you can use strings in the switch statement.In other words, the switch statement tests the equality of a variable against multiple values."
+      },
+      {
+        "title": "Java switch case",
+        "type": "2",
+        "description": "The Java switch statement executes one statement from multiple conditions. It is like if-else-if ladder statement. The switch statement works with byte, short, int, long, enum types, String and some wrapper types like Byte, Short, Int, and Long. Since Java 7, you can use strings in the switch statement.In other words, the switch statement tests the equality of a variable against multiple values."
+      },
+      {
+        "title": "Java switch case",
+        "type": "2",
+        "description": "The Java switch statement executes one statement from multiple conditions. It is like if-else-if ladder statement. The switch statement works with byte, short, int, long, enum types, String and some wrapper types like Byte, Short, Int, and Long. Since Java 7, you can use strings in the switch statement.In other words, the switch statement tests the equality of a variable against multiple values."
+      },
+      {
+        "title": "Java switch case",
+        "type": "2",
+        "description": "The Java switch statement executes one statement from multiple conditions. It is like if-else-if ladder statement. The switch statement works with byte, short, int, long, enum types, String and some wrapper types like Byte, Short, Int, and Long. Since Java 7, you can use strings in the switch statement.In other words, the switch statement tests the equality of a variable against multiple values."
+      }
+    ]
+  }
+}

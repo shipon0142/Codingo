@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "464465700102",
+    "firebase_url": "https://codingo-676df-default-rtdb.firebaseio.com",
+    "project_id": "codingo-676df",
+    "storage_bucket": "codingo-676df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464465700102:android:1f5ae9308e32fbda662a87",
+        "android_client_info": {
+          "package_name": "com.example.learningapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464465700102-egp50gtkk235112jggis2fm14pvu9vd5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learningapp",
+            "certificate_hash": "11de3b14f11cc7285e19c201b7faa5ba82c9e894"
+          }
+        },
+        {
+          "client_id": "464465700102-tses3h0rdd2jj529titk9r0h4vgp6bv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2r0RbV9z8T5bGXEf1KjGlxLJibmB1eRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464465700102-tses3h0rdd2jj529titk9r0h4vgp6bv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

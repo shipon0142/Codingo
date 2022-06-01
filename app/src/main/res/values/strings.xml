@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Codingo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+<!--    <string name="default_web_client_id">AIzaSyB_RF2RN421NHSjnnKhSNm6r0VWRHb4nRY</string>-->
+    <string name="default_web_client_id2">464465700102-tses3h0rdd2jj529titk9r0h4vgp6bv2.apps.googleusercontent.com</string>
+</resources>
