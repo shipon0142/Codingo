@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:464465700102:android:a173f17209dd37d6662a87",
+        "android_client_info": {
+          "package_name": "com.codingo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464465700102-tses3h0rdd2jj529titk9r0h4vgp6bv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2r0RbV9z8T5bGXEf1KjGlxLJibmB1eRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464465700102-tses3h0rdd2jj529titk9r0h4vgp6bv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:464465700102:android:1f5ae9308e32fbda662a87",
         "android_client_info": {
           "package_name": "com.example.learningapp"

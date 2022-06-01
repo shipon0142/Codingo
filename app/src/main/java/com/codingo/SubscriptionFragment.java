@@ -129,8 +129,7 @@ public class SubscriptionFragment extends Fragment {
             }
         });
         List<String> productIds = new ArrayList<>();
-        productIds.add("12323");
-        productIds.add("123234");
+        productIds.add("course_pack_codingo1");
         SkuDetailsParams getProductDetailsQuery =
                 SkuDetailsParams
                         .newBuilder()
