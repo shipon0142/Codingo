@@ -1,14 +1,19 @@
 
 package com.codingo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -25,6 +30,7 @@ import com.codingo.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import ss.com.bannerslider.Slider;
 
@@ -42,6 +48,12 @@ public class HomeFragment extends Fragment {
     private ExpandableHeightGridView gridview;
     private Slider banner_slider1;
     private LinearLayout quizLL;
+    private LinearLayout myCourseLL;
+    private LinearLayout searchLL;
+    private LinearLayout AllCourseLL;
+    private LinearLayout mainToolbarLL;
+    private ImageView searchIV;
+    private EditText searchET;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -78,19 +90,24 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate( R.layout.fragment_home, container, false);
-        gridview=view.findViewById(R.id.gridview);
-        quizLL=view.findViewById(R.id.quizLL);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        gridview = view.findViewById(R.id.gridview);
+        quizLL = view.findViewById(R.id.quizLL);
+        myCourseLL = view.findViewById(R.id.myCourseLL);
+        searchLL = view.findViewById(R.id.searchLL);
+        mainToolbarLL = view.findViewById(R.id.mainToolbarLL);
+        searchIV = view.findViewById(R.id.searchIV);
+        searchET = view.findViewById(R.id.searchET);
+        AllCourseLL = view.findViewById(R.id.AllCourseLL);
 
 
         Slider.init(new PicassoImageLoadingService(getContext()));
         banner_slider1 = view.findViewById(R.id.banner_slider1);
-        List<Integer> banner=new ArrayList<>();
+        List<Integer> banner = new ArrayList<>();
 
         banner.add(R.drawable.java);
-        banner.add(R.drawable.c_plus_plus);
+        banner.add(R.drawable.php);
         banner.add(R.drawable.python);
-
 
 
         MainSliderAdopter mainSliderAdopter = new MainSliderAdopter(banner);
@@ -100,41 +117,90 @@ public class HomeFragment extends Fragment {
         quizLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),QuizEnrolledCourseActivity.class));
+                startActivity(new Intent(getContext(), QuizEnrolledCourseActivity.class));
             }
         });
+        myCourseLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), YourEnrolledCourseActivity.class));
+            }
+        });
+        searchIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainToolbarLL.setVisibility(View.GONE);
+                searchET.requestFocus();
+                searchET.requestLayout();
+            }
+        });
+        searchET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) mainToolbarLL.setVisibility(View.VISIBLE);
+            }
+        });
+        AllCourseLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), YourSearchCourseActivity.class);
+                startActivity(intent);
+            }
+        });
+        searchET.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (i) {
+                        case KeyEvent.KEYCODE_ENTER:
+                            if (searchET.getText().toString().equals("")) {
+                                searchET.clearFocus();
+                                hideKeyboard(Objects.requireNonNull(getActivity()));
+                            } else {
+                                String tex = searchET.getText().toString();
+                                searchET.setText("");
+                                searchET.clearFocus();
+                                hideKeyboard(Objects.requireNonNull(getActivity()));
+                                Intent intent = new Intent(getContext(), YourSearchCourseActivity.class);
+                                intent.putExtra("text", tex);
+                                startActivity(intent);
+                            }
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+
+
         CourseAdapter courseAdapter = new CourseAdapter(getContext(), new CourseAdapter.CourseIdcallback() {
             @Override
-            public void getCourse(String id,Integer image) {
-                String mycourses[]=MainActivity.LOGGED_IN_USER.getEnrolled().split(",");
-                for(int i=0;i<mycourses.length;i++){
-                    if(mycourses[i].equals("course"+id)){
-                        Toast.makeText(getContext(),"Already Enrolled",Toast.LENGTH_SHORT).show();
+            public void getCourse(String id, Integer image) {
+                String mycourses[] = MainActivity.LOGGED_IN_USER.getEnrolled().split(",");
+                for (int i = 0; i < mycourses.length; i++) {
+                    if (mycourses[i].equals("course" + id)) {
+                        Toast.makeText(getContext(), "Already Enrolled", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
-
-
-                CourseEnrollDialogClass cdd = new CourseEnrollDialogClass(getContext(), id, image, new CourseEnrollDialogClass.EnrollCallback() {
-                    @Override
-                    public void enrollCallback(String id) {
-                        new FirebaseManager(getContext()).addEnrolledCourse(MainActivity.LOGGED_IN_USER.getId(), MainActivity.LOGGED_IN_USER.getEnrolled()+"course" + id+",", new FirebaseManager.SuccessListener() {
-                            @Override
-                            public void getsuccess() {
-
-                                Toast.makeText(getContext(),"Successfully Enrolled",Toast.LENGTH_SHORT).show();
-
-                            }
-
-                            @Override
-                            public void getFail() {
-
-                            }
-                        });
+                if(Utils.getStringValue(Utils.getJsonObject(MainActivity.PUBLIC_JSON_OBJECT, "id"+id), "enable").equals("0")){
+                    Toast.makeText(getContext(), "This course will be enable soon", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                for (int i = 0; i < MainActivity.courses.size(); i++) {
+                    if (MainActivity.courses.get(i).getId().equals(id)) {
+                        Intent intent = new Intent(getContext(), CourseDetailsActivity.class);
+                        intent.putExtra("title", MainActivity.courses.get(i).getName());
+                        intent.putExtra("id", id);
+                        intent.putExtra("description", Utils.getStringValue(Utils.getJsonObject(MainActivity.PUBLIC_JSON_OBJECT, "id"+id), "content"));
+                        startActivity(intent);
+                        break;
                     }
-                });
-                cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                cdd.show();
+
+                }
+
             }
         });
         gridview.setExpanded(true);
@@ -154,5 +220,16 @@ public class HomeFragment extends Fragment {
         banner_slider1.setInterval(3000);*/
         return view;
 
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

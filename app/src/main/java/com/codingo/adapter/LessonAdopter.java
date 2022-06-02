@@ -22,10 +22,12 @@ public class LessonAdopter extends RecyclerView.Adapter<LessonAdopter.ViewHolder
     Context context;
 
     JSONArray lessons;
+    String id;
 
-    public LessonAdopter(Context context, JSONArray lessons) {
+    public LessonAdopter(Context context, JSONArray lessons,String id) {
         this.context = context;
         this.lessons=lessons;
+        this.id=id;
 
 
     }
@@ -55,6 +57,7 @@ public class LessonAdopter extends RecyclerView.Adapter<LessonAdopter.ViewHolder
                   if(!type.equals("2")) {
                       Intent i = new Intent(context, CourseLessonActivity.class);
                       i.putExtra("title", title);
+                      i.putExtra("id", id);
                       i.putExtra("description", description);
                       context.startActivity(i);
                   }

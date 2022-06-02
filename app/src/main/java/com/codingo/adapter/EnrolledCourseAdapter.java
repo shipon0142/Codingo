@@ -37,7 +37,7 @@ public class EnrolledCourseAdapter extends BaseAdapter {
     }public EnrolledCourseAdapter(Context c,boolean forQuiz) {
         mContext = c;
         courseid = MainActivity.LOGGED_IN_USER.getEnrolled().split(",");
-        this.forQuiz=true;
+        this.forQuiz=forQuiz;
 
     }
 

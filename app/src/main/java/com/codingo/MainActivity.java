@@ -18,6 +18,8 @@ import com.codingo.utils.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabDots;
     ViewPager pager;
    public static SharedPreferences sharedPreferences;
-
+   public static JSONObject PUBLIC_JSON_OBJECT;
     // Creating an Editor object to edit(write to the file)
     public static SharedPreferences.Editor myEdit;
     public static User LOGGED_IN_USER;

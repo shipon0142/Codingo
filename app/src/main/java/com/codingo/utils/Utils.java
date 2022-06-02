@@ -12,8 +12,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Utils {
-    public static String getFromAsset(Context context){
-        StringBuilder json= new StringBuilder();
+/*
+    public static String getFromAsset(Context context) {
+        StringBuilder json = new StringBuilder();
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(
@@ -37,10 +38,11 @@ public class Utils {
         }
         return json.toString();
     }
+*/
 
 
     public static JSONObject getJsonObject(JSONObject jsonObject, String field) {
-        JSONObject jsonObject1=new JSONObject();
+        JSONObject jsonObject1 = new JSONObject();
         try {
             jsonObject1 = jsonObject.getJSONObject(field);
         } catch (JSONException e) {
@@ -49,8 +51,10 @@ public class Utils {
         return jsonObject1;
 
 
-    }    public static JSONObject getJsonObject(JSONArray jsonArray, int index) {
-        JSONObject jsonObject1=new JSONObject();
+    }
+
+    public static JSONObject getJsonObject(JSONArray jsonArray, int index) {
+        JSONObject jsonObject1 = new JSONObject();
         try {
             jsonObject1 = jsonArray.getJSONObject(index);
         } catch (JSONException e) {
@@ -59,8 +63,10 @@ public class Utils {
         return jsonObject1;
 
 
-    }    public static String getStringValue(JSONObject jsonObject, String field) {
-        String str="";
+    }
+
+    public static String getStringValue(JSONObject jsonObject, String field) {
+        String str = "";
         try {
             str = jsonObject.getString(field);
         } catch (JSONException e) {
@@ -69,18 +75,23 @@ public class Utils {
         return str;
 
 
-    }public static String getStringValue(Intent intent, String field) {
-        String str="";
+    }
+
+    public static String getStringValue(Intent intent, String field) {
+        String str = "";
         try {
-            return intent.getStringExtra(field);
+            str = intent.getStringExtra(field);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (str == null) str = "";
         return str;
 
 
-    }  public static JSONArray getJsonArray(JSONObject jsonObject, String field) {
-        JSONArray jsonObject1=new JSONArray();
+    }
+
+    public static JSONArray getJsonArray(JSONObject jsonObject, String field) {
+        JSONArray jsonObject1 = new JSONArray();
         try {
             jsonObject1 = jsonObject.getJSONArray(field);
         } catch (JSONException e) {

@@ -10,32 +10,60 @@ import android.widget.TextView;
 
 import com.codingo.MainActivity;
 import com.codingo.bd.R;
+import com.codingo.model.Course;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class CourseAdapter extends BaseAdapter {
     private Context mContext;
+    private boolean forSearch;
+    private String text;
 
 
     //List<String> TITLE = Arrays.asList("Java Programming", "C++ Programming", "Python Programming", "C# Programming", "Web development", "Version Control");
-
+    ArrayList<Course> courses = new ArrayList<>();
 
     // Constructor
     public interface CourseIdcallback {
-        public void getCourse(String id,Integer image);
+        public void getCourse(String id, Integer image);
     }
 
     CourseIdcallback courseIdcallback;
 
     public CourseAdapter(Context c, CourseIdcallback courseIdcallback) {
         mContext = c;
+        courses = new ArrayList<>();
+        courses = MainActivity.courses;
+        this.courseIdcallback = courseIdcallback;
+
+    }
+
+    public CourseAdapter(Context c, boolean forSearch, String text, CourseIdcallback courseIdcallback) {
+        mContext = c;
+        this.forSearch = forSearch;
+        this.text = text;
+        courses = new ArrayList<>();
+        if(!text.equals("")) {
+            for (int i = 0; i < MainActivity.courses.size(); i++) {
+                if (MainActivity.courses.get(i).getName().toLowerCase().contains(text.toLowerCase())) {
+                    courses.add(MainActivity.courses.get(i));
+                }
+
+            }
+        }else {
+            courses = MainActivity.courses;
+        }
+
+
         this.courseIdcallback = courseIdcallback;
 
     }
 
     public int getCount() {
-        return MainActivity.courses.size();
+        return courses.size();
     }
 
     public Object getItem(int position) {
@@ -57,12 +85,12 @@ public class CourseAdapter extends BaseAdapter {
         }
         titleTV = convertView.findViewById(R.id.titleTV);
         imageIV = convertView.findViewById(R.id.imageIV);
-        titleTV.setText(MainActivity.courses.get(position).getName());
-        imageIV.setImageResource(MainActivity.courses.get(position).getImage());
+        titleTV.setText(courses.get(position).getName());
+        imageIV.setImageResource(courses.get(position).getImage());
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                courseIdcallback.getCourse(MainActivity.courses.get(position).getId(),MainActivity.courses.get(position).getImage());
+                courseIdcallback.getCourse(courses.get(position).getId(), courses.get(position).getImage());
             }
         });
 

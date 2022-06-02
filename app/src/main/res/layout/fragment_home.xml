@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,83 +13,113 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:paddingTop="7dp"
-            android:paddingBottom="4dp"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="3dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:adjustViewBounds="true"
-                android:padding="9dp"
-                android:src="@drawable/app_learning_icon">
-
-            </ImageView>
+            android:layout_marginBottom="12dp">
 
             <LinearLayout
+                android:id="@+id/mainToolbarLL"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:elevation="3dp"
+                android:orientation="horizontal"
+                android:paddingTop="7dp"
+                android:paddingBottom="4dp">
 
                 <ImageView
                     android:layout_width="40dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:layout_marginStart="10dp"
-                    android:padding="5dp"
-                    android:src="@drawable/menu_icon"
-                    android:visibility="gone" />
+                    android:adjustViewBounds="true"
+                    android:padding="9dp"
+                    android:src="@drawable/app_learning_icon">
 
-                <TextView
-                    android:layout_marginStart="5dp"
+                </ImageView>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/maven_pro_medium"
-                    android:gravity="center|start"
-                    android:text="@string/app_name"
-                    android:textStyle="bold"
-                    android:textColor="#0E2539"
-                    android:textSize="16dp" />
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:padding="5dp"
+                        android:src="@drawable/menu_icon"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/maven_pro_medium"
+                        android:gravity="center|start"
+                        android:text="@string/app_name"
+                        android:textColor="#0E2539"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/searchIV"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="10dp"
+                        android:padding="7dp"
+
+                        android:src="@drawable/search_icon">
+
+                    </ImageView>
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="12dp"
-            android:gravity="center"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:background="@drawable/search_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="7dp"
-                android:layout_marginStart="10dp"
-
-                android:src="@drawable/search_icon">
-
-            </ImageView>
-
-            <TextView
-                android:text="Search for Courses"
-                android:textSize="11dp"
-                android:textColor="#47555E"
-                android:fontFamily="@font/maven_pro"
+            <LinearLayout
+                android:id="@+id/searchLL"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/search_background"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:padding="7dp"
+
+                    android:src="@drawable/search_icon">
+
+                </ImageView>
+
+                <EditText
+                    android:id="@+id/searchET"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="#ffffff"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:fontFamily="@font/maven_pro"
+                    android:gravity="center|start"
+                    android:hint="Search for Courses"
+                    android:textColor="#47555E"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
     </LinearLayout>
 
     <ScrollView
@@ -122,27 +153,26 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                           <!-- <androidx.cardview.widget.CardView
-                                android:layout_marginStart="15dp"
-                                android:layout_marginEnd="15dp"
-                                android:elevation="3dp"
-                                app:cardBackgroundColor="#DDFFB5"
-                                app:cardUseCompatPadding="true"
-                                android:layout_marginBottom="5dp"
-                                app:cardCornerRadius="5dp"
+                            <!-- <androidx.cardview.widget.CardView
+                                 android:layout_marginStart="15dp"
+                                 android:layout_marginEnd="15dp"
+                                 android:elevation="3dp"
+                                 app:cardBackgroundColor="#DDFFB5"
+                                 app:cardUseCompatPadding="true"
+                                 android:layout_marginBottom="5dp"
+                                 app:cardCornerRadius="5dp"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content">-->
+
+                            <ss.com.bannerslider.Slider
+                                android:id="@+id/banner_slider1"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">-->
-
-                                <ss.com.bannerslider.Slider
-                                    android:id="@+id/banner_slider1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="190dp"
-                                    android:elevation="3dp"
-                                    android:fitsSystemWindows="true"
-                                    app:slider_animateIndicators="true"
-                                    app:slider_loopSlides="true" />
-                         <!--   </androidx.cardview.widget.CardView>-->
-
+                                android:layout_height="190dp"
+                                android:elevation="3dp"
+                                android:fitsSystemWindows="true"
+                                app:slider_animateIndicators="true"
+                                app:slider_loopSlides="true" />
+                            <!--   </androidx.cardview.widget.CardView>-->
 
 
                         </LinearLayout>
@@ -152,65 +182,71 @@
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
                 <LinearLayout
-                    android:visibility="gone"
-                    android:gravity="center"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:visibility="gone">
 
                     <ImageView
-                        android:src="@drawable/cat1"
                         android:layout_width="40dp"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:src="@drawable/cat1" />
+
                     <TextView
-                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:textSize="11dp"
                         android:fontFamily="@font/maven_pro"
                         android:text="Categories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textColor="@color/black"
+                        android:textSize="11dp" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:visibility="gone"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:visibility="gone">
 
                     <ImageView
-                        android:src="@drawable/cat2"
                         android:layout_width="40dp"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:src="@drawable/cat2" />
+
                     <TextView
-                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:textSize="11dp"
                         android:fontFamily="@font/maven_pro"
                         android:text="Solving"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textColor="@color/black"
+                        android:textSize="11dp" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:gravity="center"
-                    android:layout_weight="1"
+                    android:id="@+id/myCourseLL"
                     android:layout_width="0dp"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -227,18 +263,18 @@
                                 android:layout_height="wrap_content">
 
                                 <LinearLayout
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="10dp"
 
                                     android:gravity="center"
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:src="@drawable/cat1"
                                         android:layout_width="40dp"
-                                        android:layout_height="40dp" />
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/cat2" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -249,7 +285,7 @@
                                         android:gravity="center"
                                         android:paddingTop="10dp"
                                         android:paddingBottom="10dp"
-                                        android:text="Categories"
+                                        android:text="Your course"
                                         android:textColor="#000000"
                                         android:textSize="10dp" />
 
@@ -260,17 +296,18 @@
                     </LinearLayout>
 
 
-
                 </LinearLayout>
+
                 <LinearLayout
-                    android:gravity="center"
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_width="0dp"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/AllCourseLL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -285,18 +322,18 @@
                                 android:layout_height="wrap_content">
 
                                 <LinearLayout
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="10dp"
 
                                     android:gravity="center"
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:src="@drawable/cat1"
                                         android:layout_width="40dp"
-                                        android:layout_height="40dp" />
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/cat4" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -307,7 +344,7 @@
                                         android:gravity="center"
                                         android:paddingTop="10dp"
                                         android:paddingBottom="10dp"
-                                        android:text="Categories"
+                                        android:text="All Course"
                                         android:textColor="#000000"
                                         android:textSize="10dp" />
 
@@ -318,16 +355,16 @@
                     </LinearLayout>
 
 
-
                 </LinearLayout>
+
                 <LinearLayout
-                    android:gravity="center"
                     android:id="@+id/quizLL"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
                     android:layout_width="0dp"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -344,18 +381,18 @@
                                 android:layout_height="wrap_content">
 
                                 <LinearLayout
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginBottom="10dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="10dp"
 
                                     android:gravity="center"
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:src="@drawable/cat3"
                                         android:layout_width="40dp"
-                                        android:layout_height="40dp" />
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/cat3" />
 
                                     <TextView
                                         android:id="@+id/titleTV"
@@ -378,24 +415,20 @@
                     </LinearLayout>
 
 
-
                 </LinearLayout>
 
 
-
-
-
-
             </LinearLayout>
+
             <TextView
-                android:textColor="@color/black"
-                android:layout_marginTop="24dp"
-                android:textSize="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/maven_pro_medium"
                 android:text="Recommended For You"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textColor="@color/black"
+                android:textSize="13dp" />
 
             <com.codingo.utils.ExpandableHeightGridView
                 android:id="@+id/gridview"

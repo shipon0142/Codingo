@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.codingo.apiintegration.ApiManager;
+import com.codingo.apiintegration.Configuration;
 import com.codingo.bd.R;
 import com.codingo.firebase.FirebaseManager;
 import com.codingo.model.User;
@@ -31,6 +33,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class SignupActivity extends AppCompatActivity {
     private SignInClient oneTapClient;
@@ -158,9 +164,22 @@ public class SignupActivity extends AppCompatActivity {
                                                 MainActivity.myEdit = MainActivity.sharedPreferences.edit();
                                                 MainActivity.myEdit.putString("user", new Gson().toJson(user,User.class));
                                                 MainActivity.myEdit.apply();
-                                                Intent openstartingpoint = new Intent(SignupActivity.this, com.codingo.MainActivity.class);
-                                                startActivity(openstartingpoint);
-                                                finish();
+                                                if(MainActivity.PUBLIC_JSON_OBJECT==null) {
+                                                    new ApiManager().getRequestRetrofit(SignupActivity.this, Configuration.JSON, new HashMap<>(), false, Configuration.GET_REQUEST, new ApiManager.JsonObjectCallBack() {
+                                                        @Override
+                                                        public void getJsonObject(int ResponseCode, JSONObject jsonObject) {
+                                                            MainActivity.PUBLIC_JSON_OBJECT = jsonObject;
+                                                            Intent openstartingpoint = new Intent(SignupActivity.this, com.codingo.MainActivity.class);
+                                                            startActivity(openstartingpoint);
+                                                            finish();
+
+                                                        }
+                                                    });
+                                                }else {
+                                                    Intent openstartingpoint = new Intent(SignupActivity.this, com.codingo.MainActivity.class);
+                                                    startActivity(openstartingpoint);
+                                                    finish();
+                                                }
 
                                             }
 
@@ -209,9 +228,22 @@ public class SignupActivity extends AppCompatActivity {
                         MainActivity.myEdit = MainActivity.sharedPreferences.edit();
                         MainActivity.myEdit.putString("user", new Gson().toJson(user,User.class));
                         MainActivity.myEdit.apply();
-                        Intent openstartingpoint = new Intent(SignupActivity.this, com.codingo.MainActivity.class);
-                        startActivity(openstartingpoint);
-                        finish();
+                        if(MainActivity.PUBLIC_JSON_OBJECT==null) {
+                            new ApiManager().getRequestRetrofit(SignupActivity.this, Configuration.JSON, new HashMap<>(), false, Configuration.GET_REQUEST, new ApiManager.JsonObjectCallBack() {
+                                @Override
+                                public void getJsonObject(int ResponseCode, JSONObject jsonObject) {
+                                    MainActivity.PUBLIC_JSON_OBJECT = jsonObject;
+                                    Intent openstartingpoint = new Intent(SignupActivity.this, com.codingo.MainActivity.class);
+                                    startActivity(openstartingpoint);
+                                    finish();
+
+                                }
+                            });
+                        }else {
+                            Intent openstartingpoint = new Intent(SignupActivity.this, com.codingo.MainActivity.class);
+                            startActivity(openstartingpoint);
+                            finish();
+                        }
                     }
                 });
             }

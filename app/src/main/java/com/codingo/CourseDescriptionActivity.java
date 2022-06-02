@@ -65,13 +65,10 @@ public class CourseDescriptionActivity extends AppCompatActivity {
 
         titleTV.setText(Utils.getStringValue(getIntent(), "title"));
         JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject = new JSONObject(Utils.getFromAsset(this));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JSONArray lessons = Utils.getJsonArray(Utils.getJsonObject(jsonObject, Utils.getStringValue(getIntent(), "title").toLowerCase()), "lesson");
-        LessonAdopter indicatorAdopter = new LessonAdopter(this, lessons);
+            jsonObject = MainActivity.PUBLIC_JSON_OBJECT;
+
+        JSONArray lessons = Utils.getJsonArray(Utils.getJsonObject(jsonObject, "id"+Utils.getStringValue(getIntent(), "id").toLowerCase()), "lesson");
+        LessonAdopter indicatorAdopter = new LessonAdopter(this, lessons,Utils.getStringValue(getIntent(), "id"));
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(layoutManager);

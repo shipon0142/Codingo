@@ -51,6 +51,23 @@
             android:name="com.codingo.CourseDescriptionActivity"
             android:exported="true">
 
+        </activity><activity
+            android:launchMode="singleTop"
+            android:name="com.codingo.YourSearchCourseActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:launchMode="singleTop"
+            android:name="com.codingo.YourEnrolledCourseActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:launchMode="singleTop"
+            android:name="com.codingo.CourseDetailsActivity"
+            android:exported="true">
+
         </activity>
         <activity
             android:launchMode="singleTop"
