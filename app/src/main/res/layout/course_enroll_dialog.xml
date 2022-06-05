@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/maven_pro_medium"
                     android:gravity="center"
-                    android:text="Enroll"
+                    android:text="Confirm"
                     android:textColor="#F9F6FD"
                     android:textSize="13dp" />
             </LinearLayout>

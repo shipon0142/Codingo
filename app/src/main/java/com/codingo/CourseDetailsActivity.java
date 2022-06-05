@@ -1,5 +1,6 @@
 package com.codingo;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -65,8 +66,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
                         new FirebaseManager(CourseDetailsActivity.this).addEnrolledCourse(MainActivity.LOGGED_IN_USER.getId(), MainActivity.LOGGED_IN_USER.getEnrolled() + "course" + id + ",", new FirebaseManager.SuccessListener() {
                             @Override
                             public void getsuccess() {
-
                                 Toast.makeText(CourseDetailsActivity.this, "Successfully Enrolled", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(CourseDetailsActivity.this, CourseDescriptionActivity.class);
+                                i.putExtra("title", Utils.getStringValue(getIntent(), "title"));
+                                i.putExtra("id", id);
+                                startActivity(i);
+
                                 finish();
 
                             }
@@ -85,8 +90,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-    }
+ }
 
 
 }

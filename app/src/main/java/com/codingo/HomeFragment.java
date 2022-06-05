@@ -11,6 +11,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.codingo.adapter.CourseAdapter;
 import com.codingo.adapter.EnrolledCourseAdapter;
@@ -50,6 +53,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout quizLL;
     private LinearLayout myCourseLL;
     private LinearLayout searchLL;
+    private LinearLayout cancelLL;
     private LinearLayout AllCourseLL;
     private LinearLayout mainToolbarLL;
     private ImageView searchIV;
@@ -93,6 +97,7 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         gridview = view.findViewById(R.id.gridview);
         quizLL = view.findViewById(R.id.quizLL);
+        cancelLL = view.findViewById(R.id.cancelLL);
         myCourseLL = view.findViewById(R.id.myCourseLL);
         searchLL = view.findViewById(R.id.searchLL);
         mainToolbarLL = view.findViewById(R.id.mainToolbarLL);
@@ -173,7 +178,13 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-
+        cancelLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainToolbarLL.setVisibility(View.VISIBLE);
+                hideKeyboard(Objects.requireNonNull(getActivity()));
+            }
+        });
 
         CourseAdapter courseAdapter = new CourseAdapter(getContext(), new CourseAdapter.CourseIdcallback() {
             @Override
@@ -218,9 +229,11 @@ public class HomeFragment extends Fragment {
         banner_slider1.setClipToOutline(true);
         banner_slider1.setAdapter(mainSliderAdopter);
         banner_slider1.setInterval(3000);*/
+
         return view;
 
     }
+
 
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);

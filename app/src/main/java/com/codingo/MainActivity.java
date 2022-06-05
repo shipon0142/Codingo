@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     public static SharedPreferences.Editor myEdit;
     public static User LOGGED_IN_USER;
     public  static ArrayList<Course>courses=new ArrayList<>();
+    public static BackToHomeListener backToHomeListener;
+    public interface BackToHomeListener{
+        public void backToHomeClick();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
                 setAll();
             }
         });
+        backToHomeListener=new BackToHomeListener() {
+            @Override
+            public void backToHomeClick() {
+                pager.setCurrentItem(0);
+            }
+        };
 
     }
     private void setAll(){

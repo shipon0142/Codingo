@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ public class SubscriptionFragment extends Fragment {
     private View view;
     private Slider banner_slider1;
     BillingClient billingClient;
+    int selectedPosition = -1;
 
     public SubscriptionFragment() {
         // Required empty public constructor
@@ -76,13 +78,19 @@ public class SubscriptionFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     LinearLayout buySubscriptionLL;
+    LinearLayout pack1LL;
+    LinearLayout pack2LL;
+    LinearLayout pack3LL;
+    LinearLayout pack4LL;
+    ArrayList<LinearLayout> packages = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate( R.layout.fragment_subscription, container, false);
+        view = inflater.inflate(R.layout.fragment_subscription, container, false);
         billingClient = BillingClient.newBuilder(getActivity())
                 .enablePendingPurchases()
                 .setListener(new PurchasesUpdatedListener() {
@@ -94,16 +102,48 @@ public class SubscriptionFragment extends Fragment {
                 })
                 .build();
         buySubscriptionLL = view.findViewById(R.id.buySubscriptionLL);
+        pack1LL = view.findViewById(R.id.pack1LL);
+        pack2LL = view.findViewById(R.id.pack2LL);
+        pack3LL = view.findViewById(R.id.pack3LL);
+        pack4LL = view.findViewById(R.id.pack4LL);
+        packages = new ArrayList<>();
+        packages.add(pack1LL);
+        packages.add(pack2LL);
+        packages.add(pack3LL);
+        packages.add(pack4LL);
 
         Slider.init(new PicassoImageLoadingService(getContext()));
         banner_slider1 = view.findViewById(R.id.banner_slider1);
-        List<Integer> banner=new ArrayList<>();
+        List<Integer> banner = new ArrayList<>();
 
         banner.add(R.drawable.sub1);
         banner.add(R.drawable.sub2);
         banner.add(R.drawable.sub3);
 
-
+        pack1LL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                select(0);
+            }
+        });
+        pack2LL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                select(1);
+            }
+        });
+        pack3LL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                select(2);
+            }
+        });
+        pack4LL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                select(3);
+            }
+        });
 
         MainSliderAdopter mainSliderAdopter = new MainSliderAdopter(banner);
         banner_slider1.setClipToOutline(true);
@@ -129,7 +169,10 @@ public class SubscriptionFragment extends Fragment {
             }
         });
         List<String> productIds = new ArrayList<>();
-        productIds.add("course_pack_codingo1");
+        productIds.add("monthlypackcodingo1");
+        productIds.add("monthlypackcodingo2");
+        productIds.add("monthlypackcodingo3");
+        productIds.add("monthlypackcodingo4");
         SkuDetailsParams getProductDetailsQuery =
                 SkuDetailsParams
                         .newBuilder()
@@ -143,27 +186,29 @@ public class SubscriptionFragment extends Fragment {
         buySubscriptionLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (selectedPosition == -1) {
+                    Toast.makeText(getContext(), "Please select a package", Toast.LENGTH_SHORT).show();
+                } else {
 
+                    billingClient.querySkuDetailsAsync(
+                            getProductDetailsQuery,
+                            new SkuDetailsResponseListener() {
+                                @Override
+                                public void onSkuDetailsResponse(
+                                        @NonNull BillingResult billingResult,
+                                        @Nullable List<SkuDetails> list) {
 
-                billingClient.querySkuDetailsAsync(
-                        getProductDetailsQuery,
-                        new SkuDetailsResponseListener() {
-                            @Override
-                            public void onSkuDetailsResponse(
-                                    @NonNull BillingResult billingResult,
-                                    @Nullable List<SkuDetails> list) {
+                                    billingClient.launchBillingFlow(
+                                            getActivity(),
+                                            BillingFlowParams
+                                                    .newBuilder()
+                                                    .setSkuDetails(list.get(selectedPosition))
+                                                    .build());
 
-                                billingClient.launchBillingFlow(
-                                        getActivity(),
-                                        BillingFlowParams
-                                                .newBuilder()
-                                                .setSkuDetails(list.get(0))
-                                                .build());
+                                }
+                            });
 
-                            }
-                        });
-
-
+                }
             }
         });
 
@@ -182,5 +227,14 @@ public class SubscriptionFragment extends Fragment {
         banner_slider1.setInterval(3000);*/
         return view;
 
+    }
+
+    private void select(int position) {
+        selectedPosition = position;
+        for (int i = 0; i < packages.size(); i++) {
+            if (i == position)
+                packages.get(i).setBackgroundResource(R.drawable.subscription_price_background_selected);
+            else packages.get(i).setBackgroundResource(R.drawable.subscription_price_background);
+        }
     }
 }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/rootLayoutLL"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -83,39 +84,60 @@
                 android:id="@+id/searchLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/search_background"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp">
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:padding="7dp"
-
-                    android:src="@drawable/search_icon">
-
-                </ImageView>
-
-                <EditText
-                    android:id="@+id/searchET"
-                    android:maxLines="1"
+                <LinearLayout
+                    android:background="@drawable/search_background"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
-                    android:background="#ffffff"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:fontFamily="@font/maven_pro"
-                    android:gravity="center|start"
-                    android:hint="Search for Courses"
-                    android:textColor="#47555E"
-                    android:textSize="11dp" />
+                android:layout_weight="1"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:padding="7dp"
+                        android:src="@drawable/search_icon" />
+
+                    <EditText
+                        android:id="@+id/searchET"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:background="#ffffff"
+                        android:fontFamily="@font/maven_pro"
+                        android:gravity="center|start"
+                        android:hint="Search for Courses"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="#47555E"
+                        android:textSize="11dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/cancelLL"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:textSize="11dp"
+                        android:fontFamily="@font/maven_pro"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="#47555E"
+                        android:layout_width="wrap_content"
+                        android:text="Cancel"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
