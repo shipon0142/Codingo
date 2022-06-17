@@ -66,13 +66,15 @@ public class CourseDetailsActivity extends AppCompatActivity {
                         new FirebaseManager(CourseDetailsActivity.this).addEnrolledCourse(MainActivity.LOGGED_IN_USER.getId(), MainActivity.LOGGED_IN_USER.getEnrolled() + "course" + id + ",", new FirebaseManager.SuccessListener() {
                             @Override
                             public void getsuccess() {
-                                Toast.makeText(CourseDetailsActivity.this, "Successfully Enrolled", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(CourseDetailsActivity.this, CourseDescriptionActivity.class);
                                 i.putExtra("title", Utils.getStringValue(getIntent(), "title"));
                                 i.putExtra("id", id);
                                 startActivity(i);
-
                                 finish();
+
+
+
+
 
                             }
 
@@ -90,6 +92,21 @@ public class CourseDetailsActivity extends AppCompatActivity {
             }
         });
 
+ }
+ private void showDialog(String title,String id){
+     Intent i = new Intent(CourseDetailsActivity.this, CourseDescriptionActivity.class);
+     i.putExtra("title", title);
+     i.putExtra("id", id);
+     startActivity(i);
+     finish();
+     SuccessfullyEnrolled cdd2 = new SuccessfullyEnrolled(CourseDetailsActivity.this, new SuccessfullyEnrolled.EnrollCallback() {
+         @Override
+         public void enrollCallback(String id) {
+          /*   */
+         }
+     });
+     cdd2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+     cdd2.show();
  }
 
 

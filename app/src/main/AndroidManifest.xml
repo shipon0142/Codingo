@@ -42,6 +42,12 @@
         </activity>
         <activity
             android:launchMode="singleTop"
+            android:name="com.codingo.MarksActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:launchMode="singleTop"
             android:name="com.codingo.CourseLessonActivity"
             android:exported="true">
 

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class MeFragment extends Fragment {
     private LinearLayout logoutLL;
     private LinearLayout privacyPolicyLL;
     private TextView emailTV;
+    private TextView nameTV;
     private LinearLayout backToHomeLL;
     private LinearLayout aboutUsLL;
     private LinearLayout contactUsLL;
@@ -93,6 +95,7 @@ public class MeFragment extends Fragment {
         gridview = view.findViewById(R.id.gridview);
         profileIV = view.findViewById(R.id.profileIV);
         emailTV = view.findViewById(R.id.emailTV);
+        nameTV = view.findViewById(R.id.nameTV);
         logoutLL = view.findViewById(R.id.logoutLL);
         backToHomeLL = view.findViewById(R.id.backToHomeLL);
         privacyPolicyLL = view.findViewById(R.id.privacyPolicyLL);
@@ -101,19 +104,45 @@ public class MeFragment extends Fragment {
         myEnrolledLL = view.findViewById(R.id.myEnrolledLL);
         myRateUsLL = view.findViewById(R.id.myRateUsLL);
         shareAppLL = view.findViewById(R.id.shareAppLL);
+        nameTV.setText(LOGGED_IN_USER.getName());
+        emailTV.setText(LOGGED_IN_USER.getEmail());
         sharedPreferences = getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
         MainActivity.myEdit = sharedPreferences.edit();
         logoutLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               /* LogoutConfirmation cdd = new LogoutConfirmation(getContext(), new LogoutConfirmation.EnrollCallback() {
+                    @Override
+                    public void enrollCallback(String id) {
 
-                MainActivity.myEdit.clear();
-                MainActivity.myEdit.apply();
-                ;
-                Intent openstartingpoint = new Intent(getContext(), com.codingo.LoginActivity.class);
-                openstartingpoint.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(openstartingpoint);
-                getActivity().finish();
+                    }
+                });
+                cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cdd.show();*/
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), android.R.style.Theme_Holo_Light_Dialog))
+                        .setCancelable(true)
+
+                        .setMessage("Do you want to logout?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                MainActivity.myEdit.clear();
+                                MainActivity.myEdit.apply();
+                                Intent openstartingpoint = new Intent(getContext(), com.codingo.LoginActivity.class);
+                                openstartingpoint.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(openstartingpoint);
+                                getActivity().finish();
+                                dialog.dismiss();
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Toast.makeToast(mContext, "No", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                builder.show();
 
 
             }
@@ -123,15 +152,17 @@ public class MeFragment extends Fragment {
             public void onClick(View view) {
                 MainActivity.backToHomeListener.backToHomeClick();
             }
-        }); privacyPolicyLL.setOnClickListener(new View.OnClickListener() {
+        });
+        privacyPolicyLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getContext(),WebViewContentActivity.class);
-                i.putExtra("title","Privacy Policy");
-                i.putExtra("content", Utils.getStringValue(MainActivity.PUBLIC_JSON_OBJECT,"privacy_policy"));
+                Intent i = new Intent(getContext(), WebViewContentActivity.class);
+                i.putExtra("title", "Privacy Policy");
+                i.putExtra("content", Utils.getStringValue(MainActivity.PUBLIC_JSON_OBJECT, "privacy_policy"));
                 startActivity(i);
             }
-        });myEnrolledLL.setOnClickListener(new View.OnClickListener() {
+        });
+        myEnrolledLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), YourEnrolledCourseActivity.class));
@@ -147,20 +178,22 @@ public class MeFragment extends Fragment {
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }
-        });aboutUsLL.setOnClickListener(new View.OnClickListener() {
+        });
+        aboutUsLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getContext(),WebViewContentActivity.class);
-                i.putExtra("title","About Us");
-                i.putExtra("content", Utils.getStringValue(MainActivity.PUBLIC_JSON_OBJECT,"about_us"));
+                Intent i = new Intent(getContext(), WebViewContentActivity.class);
+                i.putExtra("title", "About Us");
+                i.putExtra("content", Utils.getStringValue(MainActivity.PUBLIC_JSON_OBJECT, "about_us"));
                 startActivity(i);
             }
-        });contactUsLL.setOnClickListener(new View.OnClickListener() {
+        });
+        contactUsLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getContext(),WebViewContentActivity.class);
-                i.putExtra("title","Contact Us");
-                i.putExtra("content", Utils.getStringValue(MainActivity.PUBLIC_JSON_OBJECT,"contact_us"));
+                Intent i = new Intent(getContext(), WebViewContentActivity.class);
+                i.putExtra("title", "Contact Us");
+                i.putExtra("content", Utils.getStringValue(MainActivity.PUBLIC_JSON_OBJECT, "contact_us"));
                 startActivity(i);
             }
         });

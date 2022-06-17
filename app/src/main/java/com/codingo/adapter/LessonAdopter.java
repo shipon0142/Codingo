@@ -1,5 +1,6 @@
 package com.codingo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codingo.CourseLessonActivity;
+import com.codingo.CourseQuizActivity;
 import com.codingo.bd.R;
 import com.codingo.utils.Utils;
 
@@ -28,8 +30,6 @@ public class LessonAdopter extends RecyclerView.Adapter<LessonAdopter.ViewHolder
         this.context = context;
         this.lessons=lessons;
         this.id=id;
-
-
     }
 
     @NonNull
@@ -40,9 +40,10 @@ public class LessonAdopter extends RecyclerView.Adapter<LessonAdopter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, @SuppressLint("RecyclerView") final int j) {
+        int i=viewHolder.getAdapterPosition();
        String title=  Utils.getStringValue(Utils.getJsonObject(lessons,i),"title");
-       String description=  Utils.getStringValue(Utils.getJsonObject(lessons,i),"description");
+       String description=  Utils.getStringValue(Utils.getJsonObject(lessons,i),"descriptions");
        String type=  Utils.getStringValue(Utils.getJsonObject(lessons,i),"type");
        if(type.equals("2")){
            viewHolder.premiumIV.setVisibility(View.VISIBLE);
@@ -50,15 +51,22 @@ public class LessonAdopter extends RecyclerView.Adapter<LessonAdopter.ViewHolder
            viewHolder.premiumIV.setVisibility(View.GONE);
        }
           viewHolder.titleTV.setText(title);
-          viewHolder.lessonTV.setText("Lesson "+(i+1)+":");
+          viewHolder.lessonTV.setText("0"+(i+1)+":");
           viewHolder.lessonLL.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
-                  if(!type.equals("2")) {
+                  if(type.equals("1")) {
                       Intent i = new Intent(context, CourseLessonActivity.class);
                       i.putExtra("title", title);
                       i.putExtra("id", id);
-                      i.putExtra("description", description);
+                      i.putExtra("descriptions", description);
+                      i.putExtra("lessons", lessons.toString());
+                      i.putExtra("position", ""+j);
+                      context.startActivity(i);
+                  } if(type.equals("3")) {
+                      Intent i = new Intent(context, CourseQuizActivity.class);
+                      i.putExtra("title", title);
+                      i.putExtra("id", id);
                       context.startActivity(i);
                   }
 

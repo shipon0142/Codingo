@@ -382,6 +382,7 @@
                 <LinearLayout
                     android:id="@+id/quizLL"
                     android:layout_width="0dp"
+                    android:visibility="invisible"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"

@@ -28,6 +28,7 @@ import com.codingo.adapter.MainSliderAdopter;
 import com.codingo.adapter.PicassoImageLoadingService;
 import com.codingo.bd.R;
 import com.codingo.firebase.FirebaseManager;
+import com.codingo.model.Course;
 import com.codingo.utils.ExpandableHeightGridView;
 import com.codingo.utils.Utils;
 
@@ -192,7 +193,14 @@ public class HomeFragment extends Fragment {
                 String mycourses[] = MainActivity.LOGGED_IN_USER.getEnrolled().split(",");
                 for (int i = 0; i < mycourses.length; i++) {
                     if (mycourses[i].equals("course" + id)) {
-                        Toast.makeText(getContext(), "Already Enrolled", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getContext(), "Already Enrolled", Toast.LENGTH_SHORT).show();
+
+
+                            Intent ii = new Intent(getContext(), CourseDescriptionActivity.class);
+                            ii.putExtra("title", getCourse2(id).getName());
+                            ii.putExtra("id", getCourse2(id).getId());
+                            startActivity(ii);
+
                         return;
                     }
                 }
@@ -234,7 +242,14 @@ public class HomeFragment extends Fragment {
 
     }
 
-
+    private Course getCourse2(String id) {
+        for (int i = 0; i < MainActivity.courses.size(); i++) {
+            if (MainActivity.courses.get(i).getId().equals(id)) {
+                return MainActivity.courses.get(i);
+            }
+        }
+        return new Course();
+    }
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         //Find the currently focused view, so we can grab the correct window token from it.

@@ -1,5 +1,6 @@
 package com.codingo;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -64,6 +65,7 @@ public class CourseQuizActivity extends AppCompatActivity {
     TextView fillInTheblankAnsTV;
     TextView titleTV;
     LinearLayout closeIV;
+    int marks = 0;
     HashMap<String, String> result = new HashMap<>();
     ArrayList<LinearLayout> indicator = new ArrayList<>();
 
@@ -83,7 +85,8 @@ public class CourseQuizActivity extends AppCompatActivity {
         titleFillIntheBlankTV = findViewById(R.id.titleFillIntheBlankTV);
         questionTV = findViewById(R.id.questionTV);
         closeIV = findViewById(R.id.closeIV);
-        titleTV.setText(Utils.getStringValue(getIntent(),"title"));
+        marks = 0;
+        titleTV.setText(Utils.getStringValue(getIntent(), "title"));
         closeIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,7 +129,7 @@ public class CourseQuizActivity extends AppCompatActivity {
 
         jsonObject = MainActivity.PUBLIC_JSON_OBJECT;
 
-        questions = Utils.getJsonArray(Utils.getJsonObject(jsonObject, "id"+Utils.getStringValue(getIntent(),"id")), "questions");
+        questions = Utils.getJsonArray(Utils.getJsonObject(jsonObject, "id" + Utils.getStringValue(getIntent(), "id")), "questions");
         currentPage = 0;
         setIndicator();
         clearMcq();
@@ -175,9 +178,9 @@ public class CourseQuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 clearFillinTheGap();
                 setMarkResult(ANS_A, fillcv1, filloptionATV);
-                if(answer.equals("")){
+                if (answer.equals("")) {
                     fillInTheblankAnsTV.setText("");
-                }else {
+                } else {
                     fillInTheblankAnsTV.setText(filloptionATV.getText().toString());
                 }
             }
@@ -187,10 +190,10 @@ public class CourseQuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 clearFillinTheGap();
                 setMarkResult(ANS_B, fillcv2, filloptionBTV);
-                if(answer.equals("")){
+                if (answer.equals("")) {
                     fillInTheblankAnsTV.setText("");
                     fillInTheblankAnsTV.setPaintFlags(0);
-                }else {
+                } else {
                     fillInTheblankAnsTV.setText(filloptionBTV.getText().toString());
                 }
             }
@@ -200,10 +203,10 @@ public class CourseQuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 clearFillinTheGap();
                 setMarkResult(ANS_C, fillcv3, filloptionCTV);
-                if(answer.equals("")){
+                if (answer.equals("")) {
                     fillInTheblankAnsTV.setText("");
                     fillInTheblankAnsTV.setPaintFlags(0);
-                }else {
+                } else {
                     fillInTheblankAnsTV.setText(filloptionCTV.getText().toString());
                 }
             }
@@ -213,10 +216,10 @@ public class CourseQuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 clearFillinTheGap();
                 setMarkResult(ANS_D, fillcv4, filloptionDTV);
-                if(answer.equals("")){
+                if (answer.equals("")) {
                     fillInTheblankAnsTV.setText("");
                     fillInTheblankAnsTV.setPaintFlags(0);
-                }else {
+                } else {
                     fillInTheblankAnsTV.setText(filloptionDTV.getText().toString());
                 }
 
@@ -226,15 +229,16 @@ public class CourseQuizActivity extends AppCompatActivity {
         continueLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(answer.equals("")){
+                if (answer.equals("")) {
                     Toast.makeText(CourseQuizActivity.this, "Please select a answer", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                boolean flag=false;
-                if(answer.contains(Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "answer")) && answer.length()==Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "answer").length()){
-                    flag=true;
-                }else {
-                    flag=false;
+                boolean flag = false;
+                if (answer.contains(Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "answer")) && answer.length() == Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "answer").length()) {
+                    flag = true;
+                    marks++;
+                } else {
+                    flag = false;
                 }
                 showResult(flag);
                 clearMcq();
@@ -251,6 +255,14 @@ public class CourseQuizActivity extends AppCompatActivity {
                     } else {
 
                     }
+                } else {
+
+                    Intent i=new Intent(CourseQuizActivity.this,MarksActivity.class);
+                    i.putExtra("marks",""+marks);
+                    i.putExtra("questions",""+questions.length());
+                    startActivity(i);
+                    finish();
+
                 }
             }
         });
@@ -261,20 +273,21 @@ public class CourseQuizActivity extends AppCompatActivity {
     private void showResult(boolean flag) {
 
 
-        ResultDialogClass cdd = new ResultDialogClass(this,flag);
+        ResultDialogClass cdd = new ResultDialogClass(this, flag);
         cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         cdd.show();
 
 
     }
 
-    private void clearMcq(){
+    private void clearMcq() {
         clearAll(ANS_A, cv1, optionATV);
         clearAll(ANS_B, cv2, optionBTV);
         clearAll(ANS_C, cv3, optionCTV);
         clearAll(ANS_D, cv4, optionDTV);
     }
-    private void clearFillinTheGap(){
+
+    private void clearFillinTheGap() {
         clearAll(ANS_A, fillcv1, filloptionATV);
         clearAll(ANS_B, fillcv2, filloptionBTV);
         clearAll(ANS_C, fillcv3, filloptionCTV);
@@ -320,12 +333,12 @@ public class CourseQuizActivity extends AppCompatActivity {
         questionTV.setText(Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "question"));
         optionATV.setText(Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "a"));
         optionBTV.setText(Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "b"));
-        if(!Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "c").equals("")) {
+        if (!Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "c").equals("")) {
             optionCTV.setText(Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "c"));
             optionDTV.setText(Utils.getStringValue(Utils.getJsonObject(questions, currentPage), "d"));
             cv3.setVisibility(View.VISIBLE);
             cv4.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             cv3.setVisibility(View.INVISIBLE);
             cv4.setVisibility(View.INVISIBLE);
         }

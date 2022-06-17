@@ -89,6 +89,18 @@ public class Utils {
 
 
     }
+    public static int getIntegerValue(Intent intent, String field) {
+        int str = 0;
+        try {
+            str = intent.getIntExtra(field,0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return str;
+
+
+    }
 
     public static JSONArray getJsonArray(JSONObject jsonObject, String field) {
         JSONArray jsonObject1 = new JSONArray();

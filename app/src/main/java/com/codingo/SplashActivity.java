@@ -54,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     //Display for 3 seconds
-                    sleep(3000);
+                    sleep(100);
                 } catch (InterruptedException e) {
                     // TODO: handle exception
                     e.printStackTrace();
